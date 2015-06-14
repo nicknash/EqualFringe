@@ -49,6 +49,8 @@
     <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomTree\MaybeRandomTree.cs" />
+    <Compile Include="RandomTree\RandomTreeGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ExplicitState\" />
