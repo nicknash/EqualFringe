@@ -29,7 +29,7 @@ namespace EqualFringe.RandomTree
         /// <param name="desiredSize">The desired size (i.e. number of nodes) of the resulting random binary tree.</param>
         /// <param name="epsilon">A number between 0 and 1, that controls the tolerance around the desired size of the returned tree. 
         /// Setting epsilon small increases the constant factors in the algorithm's run-time.</param>
-        /// <returns>A random binary tree of size Allow trees of size between desiredSize * (1 - epsilon) and desiredSize * (1 + epsilon).</returns>
+        /// <returns>A random binary tree of size between desiredSize * (1 - epsilon) and desiredSize * (1 + epsilon).</returns>
         public static MaybeRandomTree Generate(int desiredSize, double epsilon, Random randGen)
         {
             var wiggle = (int) (desiredSize * epsilon);
@@ -38,7 +38,7 @@ namespace EqualFringe.RandomTree
             MaybeRandomTree candidate = MaybeRandomTree.Failed;
             while (candidate == MaybeRandomTree.Failed)
             {
-                candidate = GenerateUpperBounded(maxSize, randGen);
+                candidate = GenerateUpperBounded(1, maxSize, randGen);
                 if (candidate.Size < minSize)
                 {
                     candidate = MaybeRandomTree.Failed;
@@ -47,7 +47,7 @@ namespace EqualFringe.RandomTree
             return candidate;
         }
 
-        private static MaybeRandomTree GenerateUpperBounded(int remainingNodesAllowed, Random randGen)
+        private static MaybeRandomTree GenerateUpperBounded(int leafNumber, int remainingNodesAllowed, Random randGen)
         {
             MaybeRandomTree result;
             if (remainingNodesAllowed <= 0)
@@ -55,16 +55,16 @@ namespace EqualFringe.RandomTree
                 result = MaybeRandomTree.Failed;
             }
             else
-            {
+            {                
                 var r = randGen.NextDouble();
                 if (r <= 0.5)
-                {
-                    result = MaybeRandomTree.Leaf(remainingNodesAllowed);
+                {                   
+                    result = MaybeRandomTree.Leaf(leafNumber);
                 }
                 else
                 {
-                    var left = GenerateUpperBounded(remainingNodesAllowed - 1, randGen);
-                    var right = GenerateUpperBounded(remainingNodesAllowed - 1 - left.Size, randGen);
+                    var left = GenerateUpperBounded(leafNumber, remainingNodesAllowed - 1, randGen);
+                    var right = GenerateUpperBounded(leafNumber + left.Size, remainingNodesAllowed - 1 - left.Size, randGen);
                     result = MaybeRandomTree.Combine(left, right);
                 }
             }

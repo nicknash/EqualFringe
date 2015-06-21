@@ -21,14 +21,14 @@ namespace EqualFringe.Enumerators
             {
                 yield return root.Value;
             }
-            else if (root.HasLeft)
+            if (root.HasLeft)
             {
                 foreach (var v in GetFringe(root.Left))
                 {
                     yield return v;
                 }
             }
-            else if (root.HasRight)
+            if (root.HasRight)
             {
                 foreach (var v in GetFringe(root.Right))
                 {
