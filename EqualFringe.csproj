@@ -44,7 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enumerators\CompareFringeEnumerators.cs" />
+    <Compile Include="Enumerators\EqualFringeExplicitEnumerators.cs" />
     <Compile Include="Enumerators\EqualFringeYield.cs" />
+    <Compile Include="Enumerators\LeafEnumerator.cs" />
     <Compile Include="FringeComparisonResult.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />

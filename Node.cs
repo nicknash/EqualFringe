@@ -14,14 +14,16 @@ namespace EqualFringe
         public bool HasLeft { get { return Left != null; } }
         public bool HasRight { get { return Right != null; } }
 
+        public IEnumerable<Node> Children { get; private set; }
+
         public static Node Leaf(int value)
         {
-            return new Node { Value = value };
+            return new Node { Value = value, Children = Enumerable.Empty<Node>() };
         }
 
         public static Node Internal(Node left, Node right)
         {
-            return new Node { Value = -1, Left = left, Right = right };
+            return new Node { Value = -1, Left = left, Right = right, Children = new[]{left,right} };
         }
     }
 }

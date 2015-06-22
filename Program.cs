@@ -12,7 +12,7 @@ namespace EqualFringe
     {
         static void Main(string[] args)
         {
-            const int desiredSize = 1000;
+            const int desiredSize = 10000;
             const double tolerance = 0.05;
             var seed = (int) Stopwatch.GetTimestamp();
             var randGen = new Random(seed);
@@ -22,6 +22,7 @@ namespace EqualFringe
             Console.WriteLine("Second random tree has {0} nodes", secondTree.Size);
 
             Console.WriteLine(EqualFringeYield.CompareFringes(firstTree.Root, secondTree.Root));
+            Console.WriteLine(EqualFringeExplicitEnumerators.CompareFringes(firstTree.Root, secondTree.Root));
 
             Console.ReadKey();
         }

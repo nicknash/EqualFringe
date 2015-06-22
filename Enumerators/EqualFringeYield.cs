@@ -21,16 +21,9 @@ namespace EqualFringe.Enumerators
             {
                 yield return root.Value;
             }
-            if (root.HasLeft)
+            foreach (Node child in root.Children)
             {
-                foreach (var v in GetFringe(root.Left))
-                {
-                    yield return v;
-                }
-            }
-            if (root.HasRight)
-            {
-                foreach (var v in GetFringe(root.Right))
+                foreach (var v in GetFringe(child))
                 {
                     yield return v;
                 }
