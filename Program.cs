@@ -5,6 +5,7 @@ using System.Text;
 using System.Diagnostics;
 using EqualFringe.RandomTree;
 using EqualFringe.Enumerators;
+using EqualFringe.ExplicitState;
 
 namespace EqualFringe
 {
@@ -23,6 +24,7 @@ namespace EqualFringe
 
             Console.WriteLine(EqualFringeYield.CompareFringes(firstTree.Root, secondTree.Root));
             Console.WriteLine(EqualFringeExplicitEnumerators.CompareFringes(firstTree.Root, secondTree.Root));
+            Console.WriteLine(EqualFringeExplicitStateRecursive.CompareFringes(firstTree.Root, secondTree.Root));
 
             Console.ReadKey();
         }

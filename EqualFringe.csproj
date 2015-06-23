@@ -47,6 +47,8 @@
     <Compile Include="Enumerators\EqualFringeExplicitEnumerators.cs" />
     <Compile Include="Enumerators\EqualFringeYield.cs" />
     <Compile Include="Enumerators\LeafEnumerator.cs" />
+    <Compile Include="ExplicitState\EqualFringeExplicitStateRecursive.cs" />
+    <Compile Include="ExplicitState\State.cs" />
     <Compile Include="FringeComparisonResult.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />
@@ -55,7 +57,6 @@
     <Compile Include="RandomTree\RandomTreeGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ExplicitState\" />
     <Folder Include="Stacks\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
