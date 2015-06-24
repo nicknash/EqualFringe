@@ -47,6 +47,8 @@
     <Compile Include="Enumerators\EqualFringeExplicitEnumerators.cs" />
     <Compile Include="Enumerators\EqualFringeYield.cs" />
     <Compile Include="Enumerators\LeafEnumerator.cs" />
+    <Compile Include="ExplicitState\CompareFringeExplicitState.cs" />
+    <Compile Include="ExplicitState\EqualFringeExplicitStateIterative.cs" />
     <Compile Include="ExplicitState\EqualFringeExplicitStateRecursive.cs" />
     <Compile Include="ExplicitState\State.cs" />
     <Compile Include="FringeComparisonResult.cs" />

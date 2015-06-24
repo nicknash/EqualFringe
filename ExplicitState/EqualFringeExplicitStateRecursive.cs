@@ -9,28 +9,7 @@ namespace EqualFringe.ExplicitState
     {
         public static FringeComparisonResult CompareFringes(Node firstRoot, Node secondRoot)
         {
-            var first = GetNextLeaf(new State(firstRoot));
-            var second = GetNextLeaf(new State(secondRoot));
-            int leafNumber = 1;
-            while (first != State.NoMoreLeaves && second != State.NoMoreLeaves)
-            {                
-                if (first.LeafValue != second.LeafValue)
-                {
-                    return FringeComparisonResult.FoundUnequalLeaves(first.LeafValue, second.LeafValue, leafNumber);
-                }
-                first = first.Continue(GetNextLeaf);
-                second = second.Continue(GetNextLeaf);
-                ++leafNumber;
-            }
-            var result = FringeComparisonResult.Equal;
-            if (first == State.NoMoreLeaves && second != State.NoMoreLeaves)
-            {
-                result = FringeComparisonResult.SecondHasMoreLeavesThanFirst(second.LeafValue);
-            }
-            else if (second == State.NoMoreLeaves)
-            {
-                result = FringeComparisonResult.FirstHasMoreLeavesThanSecond(first.LeafValue);
-            }
+            var result = CompareFringeExplicitState.CompareFringes(firstRoot, secondRoot, GetNextLeaf);
             return result;            
         }
 

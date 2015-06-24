@@ -25,6 +25,7 @@ namespace EqualFringe
             Console.WriteLine(EqualFringeYield.CompareFringes(firstTree.Root, secondTree.Root));
             Console.WriteLine(EqualFringeExplicitEnumerators.CompareFringes(firstTree.Root, secondTree.Root));
             Console.WriteLine(EqualFringeExplicitStateRecursive.CompareFringes(firstTree.Root, secondTree.Root));
+            Console.WriteLine(EqualFringeExplicitStateIterative.CompareFringes(firstTree.Root, secondTree.Root));
 
             Console.ReadKey();
         }
