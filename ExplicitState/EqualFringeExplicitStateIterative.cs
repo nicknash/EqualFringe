@@ -19,18 +19,7 @@ namespace EqualFringe.ExplicitState
             while (current != null && !current.IsLeaf)
             {
                 var nextStates = current.ChildrenToProcess;
-                bool advanced = false;                
-                while (nextStates.MoveNext())
-                {
-                    current = nextStates.Current;
-                    advanced = true;
-                    break;
-                }
-                if (advanced)
-                {
-                    continue;
-                }
-                current = current.Parent;
+                current = nextStates.MoveNext() ? nextStates.Current : current.Parent;
             }
             return current ?? State.NoMoreLeaves;
         }
