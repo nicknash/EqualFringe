@@ -20,7 +20,7 @@ namespace EqualFringe.ExplicitState
                 return s;
             }
             var nextStates = s.ChildrenToProcess;
-            while (nextStates.MoveNext())
+            if (nextStates.MoveNext())
             {
                 return GetNextLeaf(nextStates.Current);
             }
