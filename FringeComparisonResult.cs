@@ -30,6 +30,24 @@ namespace EqualFringe
             return new FringeComparisonResult(String.Format("Fringes are unequal at leaf number {0}, first fringe has a leaf with value {1} but second fringe has a leaf with value {2}.", leafNumber, first, second));
         }
 
+        public static FringeComparisonResult ClassifyResult(bool firstHasMore, Lazy<int> first, bool secondHasMore, Lazy<int> second, int leafNumber)
+        {
+            var result = FringeComparisonResult.Equal;
+            if (firstHasMore && secondHasMore)
+            {
+                result = FringeComparisonResult.FoundUnequalLeaves(first.Value, second.Value, leafNumber);
+            }
+            if (firstHasMore && !secondHasMore)
+            {
+                result = FringeComparisonResult.FirstHasMoreLeavesThanSecond(first.Value);
+            }
+            if (!firstHasMore && secondHasMore)
+            {
+                result = FringeComparisonResult.SecondHasMoreLeavesThanFirst(second.Value);
+            }
+            return result;
+        }
+
         public override string ToString()
         {
             return _description;

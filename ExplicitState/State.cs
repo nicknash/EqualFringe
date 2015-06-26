@@ -7,13 +7,14 @@ namespace EqualFringe.ExplicitState
 {
     class State
     {
+        private Node _where;
+        
         public static readonly State NoMoreLeaves = new State();
 
         public readonly State Parent;
-
-        private Node _where;
         public int LeafValue { get { return _where.Value; } }
         public bool IsLeaf { get { return _where.IsLeaf; } }
+        public bool HasMoreLeaves { get { return this != State.NoMoreLeaves; } }
 
         private IEnumerator<State> _childrenToProcess;        
         public IEnumerator<State> ChildrenToProcess
@@ -31,10 +32,6 @@ namespace EqualFringe.ExplicitState
             }
         }
 
-        public State()
-        {
-        }
-
         public State(Node n, State parent)
         {
             _where = n;
@@ -45,6 +42,8 @@ namespace EqualFringe.ExplicitState
         {
             _where = n;
         }
+
+        public State() { }
 
         public State Continue(Func<State, State> getNextState)
         {

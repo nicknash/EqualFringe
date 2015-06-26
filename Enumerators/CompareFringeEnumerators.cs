@@ -18,19 +18,7 @@ namespace EqualFringe.Enumerators
                 secondHasMore = second.MoveNext();
                 ++leafNumber;
             } while (firstHasMore && secondHasMore && first.Current == second.Current);
-            var result = FringeComparisonResult.Equal;
-            if (firstHasMore && secondHasMore)
-            {
-                result = FringeComparisonResult.FoundUnequalLeaves(first.Current, second.Current, leafNumber);
-            }
-            if (firstHasMore && !secondHasMore)
-            {
-                result = FringeComparisonResult.FirstHasMoreLeavesThanSecond(first.Current);
-            }
-            if (!firstHasMore && secondHasMore)
-            {
-                result = FringeComparisonResult.SecondHasMoreLeavesThanFirst(second.Current);
-            }
+            var result = FringeComparisonResult.ClassifyResult(firstHasMore, new Lazy<int>(() => first.Current), secondHasMore, new Lazy<int>(() => second.Current), leafNumber);
             return result;
         }
     }

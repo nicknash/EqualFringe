@@ -11,26 +11,13 @@ namespace EqualFringe.ExplicitState
         {
             var first = getNextLeaf(new State(firstRoot));
             var second = getNextLeaf(new State(secondRoot));
-            int leafNumber = 1;
-            while (first != State.NoMoreLeaves && second != State.NoMoreLeaves)
+            int leafNumber = 0;
+            while (first.HasMoreLeaves && second.HasMoreLeaves && first.LeafValue == second.LeafValue)
             {
-                if (first.LeafValue != second.LeafValue)
-                {
-                    return FringeComparisonResult.FoundUnequalLeaves(first.LeafValue, second.LeafValue, leafNumber);
-                }
                 first = first.Continue(getNextLeaf);
                 second = second.Continue(getNextLeaf);
-                ++leafNumber;
             }
-            var result = FringeComparisonResult.Equal;
-            if (first == State.NoMoreLeaves && second != State.NoMoreLeaves)
-            {
-                result = FringeComparisonResult.SecondHasMoreLeavesThanFirst(second.LeafValue);
-            }
-            else if (second == State.NoMoreLeaves)
-            {
-                result = FringeComparisonResult.FirstHasMoreLeavesThanSecond(first.LeafValue);
-            }
+            var result = FringeComparisonResult.ClassifyResult(first.HasMoreLeaves, new Lazy<int>(() => first.LeafValue), second.HasMoreLeaves, new Lazy<int>(() => second.LeafValue), leafNumber);
             return result;
         }
     }
