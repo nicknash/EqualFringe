@@ -6,6 +6,7 @@ using System.Diagnostics;
 using EqualFringe.RandomTree;
 using EqualFringe.Enumerators;
 using EqualFringe.ExplicitState;
+using EqualFringe.Stacks;
 
 namespace EqualFringe
 {
@@ -13,7 +14,7 @@ namespace EqualFringe
     {
         static void Main(string[] args)
         {
-            const int desiredSize = 10000;
+            const int desiredSize = 100000;
             const double tolerance = 0.05;
             var seed = (int) Stopwatch.GetTimestamp();
             var randGen = new Random(seed);
@@ -26,6 +27,8 @@ namespace EqualFringe
             Console.WriteLine(EqualFringeExplicitEnumerators.CompareFringes(firstTree.Root, secondTree.Root));
             Console.WriteLine(EqualFringeExplicitStateRecursive.CompareFringes(firstTree.Root, secondTree.Root));
             Console.WriteLine(EqualFringeExplicitStateIterative.CompareFringes(firstTree.Root, secondTree.Root));
+            Console.WriteLine(EqualFringeRecursiveStack.CompareFringes(firstTree.Root, secondTree.Root));
+            Console.WriteLine(EqualFringeIterativeStack.CompareFringes(firstTree.Root, secondTree.Root));
 
             Console.ReadKey();
         }

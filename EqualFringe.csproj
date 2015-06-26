@@ -57,10 +57,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomTree\MaybeRandomTree.cs" />
     <Compile Include="RandomTree\RandomTreeGenerator.cs" />
+    <Compile Include="Stacks\CompareFringeStack.cs" />
+    <Compile Include="Stacks\EqualFringeIterativeStack.cs" />
+    <Compile Include="Stacks\EqualFringeRecursiveStack.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Stacks\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
