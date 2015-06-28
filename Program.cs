@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,30 @@ namespace EqualFringe
 {
     class Program
     {
+        private static void WriteTree(Node root, string fileName)
+        {
+            using (var f = new StreamWriter(fileName))
+            {
+                f.WriteLine("graph G { ");
+                f.WriteLine(@"node [style=filled,label="""",shape=circle,fillcolor=black,height=0.08]");
+                var nodes = new Stack<Tuple<int, Node>>();                
+                int nextLabel = 1;
+                nodes.Push(Tuple.Create(0, root));
+                while (nodes.Count > 0)
+                {
+                    var n = nodes.Pop();
+                    var parentLabel = n.Item1;
+                    foreach (Node m in n.Item2.Children)
+                    {
+                        f.WriteLine("{0} -- {1}", parentLabel, nextLabel);
+                        nodes.Push(Tuple.Create(nextLabel, m));
+                        ++nextLabel;
+                    }
+                }
+                f.WriteLine("}");
+            }
+        }
+
         private static void RunAlgorithm(Node firstRoot, Node secondRoot, string name, Func<Node, Node, FringeComparisonResult> algorithm)
         {
             Console.WriteLine("Running algorithm: {0}", name);
@@ -28,7 +53,7 @@ namespace EqualFringe
 
         static void Main(string[] args)
         {
-            const int desiredSize = 10000;
+            const int desiredSize = 250;
             const double tolerance = 0.1;
             var seed = (int) Stopwatch.GetTimestamp();
             var randGen = new Random(seed);
@@ -51,6 +76,10 @@ namespace EqualFringe
             {
                 RunAlgorithm(firstTree.Root, secondTree.Root, a.Item1, a.Item2);
             }
+
+            Console.WriteLine("Writing first random tree.");
+            WriteTree(firstTree.Root, "random_tree.dot");
+            Console.WriteLine("Done");
 
             Console.ReadKey();
         }
