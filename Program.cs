@@ -28,11 +28,11 @@ namespace EqualFringe
 
         static void Main(string[] args)
         {
-            const int desiredSize = 100000;
-            const double tolerance = 0.05;
+            const int desiredSize = 10000;
+            const double tolerance = 0.1;
             var seed = (int) Stopwatch.GetTimestamp();
             var randGen = new Random(seed);
-            Console.WriteLine("Generating random trees of desired size: {0} with tolerance {1}", desiredSize, tolerance);
+            Console.WriteLine("Generating random trees of desired size {0} with tolerance {1}", desiredSize, tolerance);
 
             var firstTree = RandomTreeGenerator.Generate(desiredSize, tolerance, randGen);
             var secondTree = RandomTreeGenerator.Generate(desiredSize, tolerance, randGen);
