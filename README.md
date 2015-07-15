@@ -30,7 +30,7 @@ equalFringe t1 t2 = (fringe t1) == (fringe t2)
 ### Random Trees
 
 Generating random trees to test these implementations is slightly interesting. It turns out that trying to generate a random
-binary tree by picking a random number at each node and using that to decide whether to add children doesn't work well
+binary tree by, say, flipping a coin at each node and using that to decide whether to add children doesn't work well
 (e.g., half of all trees will be just a root node :)). It turns out an extremely simple algorithm can generate random trees 
 close to a desired number of nodes in expected time linear in the number of desired nodes. The algorithm used in this repo is from
 ```
